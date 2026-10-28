@@ -4,20 +4,27 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Mercedes-AMG GLA 35 SUV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0a0a;
-      --ink: #f2f2f2;
-      --muted: #9a9a9a;
-      --line: #262626;
-      --placeholder: #161616;
+      /* Scene: driveway, 9 p.m., cobalt dusk, tail lamps. Hue 255 on every neutral. */
+      --bg:     oklch(0.15 0.012 255);
+      --ink:    oklch(0.95 0.006 255);
+      --muted:  oklch(0.64 0.014 255);
+      --accent: oklch(0.58 0.22 25);
+      --line:        oklch(0.25 0.014 255);
+      --placeholder: oklch(0.19 0.013 255);
+      --display: "Instrument Serif", Georgia, serif;
+      --body: "Inter", system-ui, -apple-system, sans-serif;
       --gutter: clamp(20px, 5vw, 80px);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { background: var(--bg); color: var(--ink); }
     html.lenis, html.lenis body { height: auto; }
     .lenis.lenis-smooth { scroll-behavior: auto; }
-    body { font: 16px/1.5 system-ui, -apple-system, "Helvetica Neue", sans-serif; }
+    body { font: 400 16px/1.5 var(--body); }
     img { display: block; max-width: 100%; }
 
     /* ---- placeholders ---- */
@@ -37,9 +44,10 @@
 
     /* ---- shared ---- */
     section { padding: clamp(80px, 12vw, 160px) var(--gutter); }
-    h1, h2, h3 { font-weight: 500; letter-spacing: -.02em; line-height: 1.05; }
-    h2 { font-size: clamp(32px, 5vw, 64px); }
-    h3 { font-size: clamp(22px, 2.6vw, 32px); }
+    h1, h2, h3 { font-family: var(--display); font-weight: 400; letter-spacing: -.01em; line-height: 1.0; }
+    h2 { font-size: clamp(40px, 6vw, 80px); }
+    h3 { font-size: clamp(28px, 3.2vw, 42px); }
+    em { font-style: italic; color: var(--accent); }
     p.lead { font-size: clamp(18px, 1.6vw, 22px); color: var(--muted); max-width: 44ch; }
     .reveal { opacity: 0; transform: translateY(32px); }
 
@@ -72,16 +80,16 @@
       position: absolute; left: var(--gutter); bottom: clamp(40px, 8vh, 96px);
       max-width: 40ch;
     }
-    .hero__copy h1 { font-size: clamp(40px, 7vw, 104px); }
+    .hero__copy h1 { font-size: clamp(56px, 9vw, 136px); }
     .hero__copy p { margin-top: 16px; color: var(--muted); font-size: clamp(14px, 1.2vw, 18px); letter-spacing: .04em; }
     .hero__hint {
       position: absolute; right: var(--gutter); bottom: 40px;
-      font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+      font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent);
     }
 
     /* ---- thesis ---- */
     .thesis { text-align: center; border-top: 1px solid var(--line); }
-    .thesis h2 { font-size: clamp(36px, 6.5vw, 96px); max-width: 14ch; margin: 0 auto; }
+    .thesis h2 { font-size: clamp(44px, 8vw, 128px); max-width: 14ch; margin: 0 auto; }
     .thesis p { margin: 32px auto 0; max-width: 52ch; color: var(--muted); font-size: clamp(16px, 1.4vw, 20px); }
 
     /* ---- feature blocks ---- */
@@ -92,7 +100,7 @@
     .feature:nth-of-type(odd) .feature__media { order: 2; }
     .feature__media { aspect-ratio: 16/10; }
     .feature__copy p { margin-top: 20px; color: var(--muted); max-width: 40ch; }
-    .feature__copy .eyebrow { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    .feature__copy .eyebrow { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
 
     /* ---- gallery band ---- */
     .gallery { padding-left: 0; padding-right: 0; border-top: 1px solid var(--line); }
@@ -108,17 +116,17 @@
     }
     .row:first-of-type { border-top: 1px solid var(--line); }
     .row__label { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
-    .row__value { font-size: clamp(22px, 2.6vw, 36px); font-weight: 500; letter-spacing: -.02em; }
+    .row__value { font-family: var(--display); font-size: clamp(28px, 3.2vw, 44px); letter-spacing: -.01em; }
     .row__note { color: var(--muted); font-size: 15px; }
 
     /* ---- CTA ---- */
     .cta { text-align: center; border-top: 1px solid var(--line); }
-    .cta h2 { font-size: clamp(36px, 6vw, 88px); }
+    .cta h2 { font-size: clamp(44px, 8vw, 128px); }
     .cta p { margin: 24px auto 40px; color: var(--muted); max-width: 44ch; }
     .button {
       display: inline-block; padding: 18px 40px;
-      background: var(--ink); color: var(--bg); text-decoration: none;
-      font-size: 13px; letter-spacing: .18em; text-transform: uppercase;
+      background: var(--accent); color: var(--ink); text-decoration: none;
+      font-size: 13px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase;
       border-radius: 999px;
     }
 
@@ -154,7 +162,7 @@
 
   <!-- THESIS -->
   <section class="thesis">
-    <h2 class="reveal">Your dream car. Your driveway. This week.</h2>
+    <h2 class="reveal">Your dream car. Your driveway. <em>This week.</em></h2>
     <p class="reveal">AMG-tuned turbo power, 4MATIC all-wheel drive, and a cabin finished like a private lounge, packed into a compact SUV that loves a winding road. This is not a someday car anymore: book your test drive today and have the keys before the weekend.</p>
   </section>
 
@@ -201,7 +209,7 @@
     </div>
     <div class="row reveal">
       <div class="row__label">Delivery</div>
-      <div class="row__value">In your driveway this week</div>
+      <div class="row__value">In your driveway <em>this week</em></div>
       <div class="row__note">In-stock allocation · home delivery available</div>
     </div>
   </section>
