@@ -40,7 +40,12 @@
       text-transform: uppercase;
       padding: 16px;
     }
-    .ph small { display: block; opacity: .6; text-transform: none; letter-spacing: 0; margin-top: 6px; }
+    .ph::before { content: attr(data-slot); opacity: .5; }
+    figure { margin: 0; }
+    figcaption {
+      margin-top: 14px; padding: 0 4px;
+      font-family: var(--display); font-size: clamp(20px, 2vw, 26px); line-height: 1.2;
+    }
 
     /* ---- shared ---- */
     section { padding: clamp(80px, 12vw, 160px) var(--gutter); }
@@ -81,11 +86,8 @@
       max-width: 40ch;
     }
     .hero__copy h1 { font-size: clamp(56px, 9vw, 136px); }
-    .hero__copy p { margin-top: 16px; color: var(--muted); font-size: clamp(14px, 1.2vw, 18px); letter-spacing: .04em; }
-    .hero__hint {
-      position: absolute; right: var(--gutter); bottom: 40px;
-      font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent);
-    }
+    .hero__copy .eyebrow { margin-bottom: 20px; }
+    .eyebrow { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
 
     /* ---- thesis ---- */
     .thesis { text-align: center; border-top: 1px solid var(--line); }
@@ -100,7 +102,6 @@
     .feature:nth-of-type(odd) .feature__media { order: 2; }
     .feature__media { aspect-ratio: 16/10; }
     .feature__copy p { margin-top: 20px; color: var(--muted); max-width: 40ch; }
-    .feature__copy .eyebrow { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
 
     /* ---- gallery band ---- */
     .gallery { padding-left: 0; padding-right: 0; border-top: 1px solid var(--line); }
@@ -116,13 +117,14 @@
     }
     .row:first-of-type { border-top: 1px solid var(--line); }
     .row__label { font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
+    .row__label b { font-weight: 500; color: var(--accent); margin-right: 12px; }
     .row__value { font-family: var(--display); font-size: clamp(28px, 3.2vw, 44px); letter-spacing: -.01em; }
     .row__note { color: var(--muted); font-size: 15px; }
 
     /* ---- CTA ---- */
     .cta { text-align: center; border-top: 1px solid var(--line); }
     .cta h2 { font-size: clamp(44px, 8vw, 128px); }
-    .cta p { margin: 24px auto 40px; color: var(--muted); max-width: 44ch; }
+    .cta .button { margin-top: 40px; }
     .button {
       display: inline-block; padding: 18px 40px;
       background: var(--accent); color: var(--ink); text-decoration: none;
@@ -150,75 +152,71 @@
   <!-- HERO: scroll-scrub. The car pulls in toward the viewer as you scroll. -->
   <section class="hero" id="hero">
     <div class="hero__media">
-      <div class="ph hero__video">VIDEO 1 · Hero background loop<small>Ambient, dark, slow. Sits behind the car. 1920×1080, muted, loop.</small></div>
+      <div class="ph hero__video" data-slot="Video 1"></div>
       <img class="hero__car" src="assets/gla35.png" alt="Black 2026 Mercedes-AMG GLA 35 SUV, front three-quarter view">
     </div>
     <div class="hero__copy">
+      <div class="eyebrow">2026 Mercedes-AMG GLA 35 · In stock now</div>
       <h1>GLA 35</h1>
-      <p>Mercedes-AMG · 2026 · Compact performance SUV</p>
     </div>
-    <div class="hero__hint">Scroll to pull in</div>
   </section>
 
-  <!-- THESIS -->
+  <!-- THESIS + LEDE -->
   <section class="thesis">
     <h2 class="reveal">Your dream car. Your driveway. <em>This week.</em></h2>
-    <p class="reveal">AMG-tuned turbo power, 4MATIC all-wheel drive, and a cabin finished like a private lounge, packed into a compact SUV that loves a winding road. This is not a someday car anymore: book your test drive today and have the keys before the weekend.</p>
+    <p class="reveal">302 horsepower, all four wheels driven, and a cabin stitched in red by hand. Reserve a test drive today and the keys are yours by Friday.</p>
   </section>
 
   <!-- FEATURE 1 -->
   <section class="feature">
     <div class="feature__copy">
-      <div class="eyebrow reveal">01 · Power</div>
-      <h3 class="reveal">302 horsepower, no warm-up required.</h3>
-      <p class="reveal">The hand-finished 2.0-liter AMG turbo pulls from the first touch of the pedal. Zero to sixty in the mid-fours, in an SUV that still fits the school run.</p>
+      <h3 class="reveal">Sixty in 5.1 seconds.</h3>
+      <p class="reveal">All 295 pound-feet arrive by 3,000 rpm, so the shove lands in the part of the rev range you actually use. The eight-speed dual-clutch swaps gears without a pause in the pull.</p>
     </div>
-    <div class="feature__media ph reveal">VIDEO 2 · Driving footage<small>Winding road, golden hour, rear three-quarter. 1920×1080, muted, loop.</small></div>
+    <div class="feature__media ph reveal" data-slot="Video 2"></div>
   </section>
 
   <!-- FEATURE 2 -->
   <section class="feature">
     <div class="feature__copy">
-      <div class="eyebrow reveal">02 · Cabin</div>
-      <h3 class="reveal">A lounge that happens to do 155.</h3>
-      <p class="reveal">AMG sport seats, red-stitched Nappa, and the MBUX dual-screen cockpit. Everything you touch was chosen to feel expensive because it is.</p>
+      <h3 class="reveal">One red thread, end to end.</h3>
+      <p class="reveal">The stitching starts on the driver's door, crosses the dash, and finishes on the passenger side without a break. Two 10.25-inch screens sit behind one pane of glass, and the navigation draws the next turn over a live camera view of the road.</p>
     </div>
-    <div class="feature__media ph reveal">IMAGE 1 · Interior<small>Driver's seat, dash and screens, warm light. 1600×1000.</small></div>
+    <div class="feature__media ph reveal" data-slot="Image 1"></div>
   </section>
 
   <!-- GALLERY BAND -->
   <section class="gallery">
     <div class="gallery__track">
-      <div class="ph reveal">IMAGE 2 · Detail<small>Panamericana grille and star, close. 1200×1500.</small></div>
-      <div class="ph reveal">IMAGE 3 · Detail<small>AMG wheel and red brake caliper. 1200×1500.</small></div>
-      <div class="ph reveal">IMAGE 1 · Interior (crop)<small>Reuse of image 1, tight on the steering wheel. 1200×1500.</small></div>
+      <figure class="reveal"><div class="ph" data-slot="Image 2"></div><figcaption>Vertical bars, one <em>star</em>.</figcaption></figure>
+      <figure class="reveal"><div class="ph" data-slot="Image 3"></div><figcaption>Nineteen inches, <em>red</em> calipers.</figcaption></figure>
+      <figure class="reveal"><div class="ph" data-slot="Image 1, crop"></div><figcaption>Flat bottom, <em>red</em> twelve o'clock.</figcaption></figure>
     </div>
   </section>
 
   <!-- DETAIL ROWS -->
   <section class="details">
     <div class="row reveal">
-      <div class="row__label">Engine</div>
-      <div class="row__value">2.0L AMG turbo inline-4</div>
-      <div class="row__note">302 hp · 295 lb-ft · 8-speed AMG DCT</div>
+      <div class="row__label"><b>01</b>Power</div>
+      <div class="row__value">302 horsepower</div>
+      <div class="row__note">2.0 liters, turbocharged, 295 pound-feet</div>
     </div>
     <div class="row reveal">
-      <div class="row__label">Drive</div>
-      <div class="row__value">AMG Performance 4MATIC</div>
-      <div class="row__note">Variable all-wheel drive, drift-tolerant in Sport+</div>
+      <div class="row__label"><b>02</b>Drive</div>
+      <div class="row__value">All four wheels</div>
+      <div class="row__note">Up to half the torque sent to the rear axle</div>
     </div>
     <div class="row reveal">
-      <div class="row__label">Delivery</div>
+      <div class="row__label"><b>03</b>Delivery</div>
       <div class="row__value">In your driveway <em>this week</em></div>
-      <div class="row__note">In-stock allocation · home delivery available</div>
+      <div class="row__note">Reserve by Tuesday, drive home Friday</div>
     </div>
   </section>
 
   <!-- CTA -->
   <section class="cta" id="cta">
     <h2 class="reveal">Stop picturing it.</h2>
-    <p class="reveal">Reserve a test drive today. If it's the one, it can be parked outside your house before Sunday.</p>
-    <a class="button reveal" href="#">Reserve your test drive</a>
+    <a class="button reveal" href="#">Reserve a test drive</a>
   </section>
 
   <footer>Concept design by Tracy Tipton. Not affiliated with Mercedes-Benz.</footer>
